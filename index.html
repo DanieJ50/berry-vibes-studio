@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berry Vibes Studio 🍓 | Cozy Core Diet Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="berry">
+  <!-- CONTINUOUS CANDY CRUSH FLOATING ELEMENTS -->
+  <div class="candy-sky" id="candySky" aria-hidden="true"></div>
+
+  <!-- STICKY TOP HUD BAR -->
+  <header class="hud-header">
+    <div class="hud-brand">
+      <span class="hud-logo-icon">🍓</span>
+      <div>
+        <h1 class="hud-title">BERRY VIBES STUDIO</h1>
+        <p class="hud-subtitle">Cozy Core Diet (CCD) Playable Hub ✨</p>
+      </div>
+    </div>
+    <div class="hud-stats">
+      <div class="hud-pill"><span class="pill-icon">🔥</span> Daily Target: <strong id="hudTargetCal">2,125</strong> kcal</div>
+      <div class="hud-pill"><span class="pill-icon">🍽️</span> Logged: <strong id="hudLoggedCal">0</strong> kcal</div>
+      <div class="hud-pill"><span class="pill-icon">🏃‍♀️</span> Burned: <strong id="hudBurnedCal">0</strong> kcal</div>
+      <button class="candy-btn-mini" onclick="scrollToSection('profileSection')">⚙️ Profile</button>
+    </div>
+  </header>
+
+  <main class="portal-wrapper">
+    <!-- TIMELY GREETING & CCD ONE-LINERS -->
+    <section class="welcome-card jelly-card">
+      <div class="welcome-header">
+        <div class="greeting-badge" id="greetingBadge">🌅 WELCOME SWEETHEART</div>
+        <h2 id="dynamicGreeting" class="candy-text-glow">Good morning, Danielle! 🍓 Ready for cozy vibes?</h2>
+        <p class="welcome-desc">No bland restriction here — CCD is all about bakery softness, texture control, and comfort with structure!</p>
+      </div>
+
+      <div class="one-liners-grid">
+        <div class="one-liner-card">
+          <div class="liner-icon">🥣</div>
+          <h4>The Oat Rule</h4>
+          <p>Always blend oats into fine flour first: zero gummy spoonable-oatmeal taste, pure fluffy bakery rise.</p>
+        </div>
+        <div class="one-liner-card">
+          <div class="liner-icon">🥛</div>
+          <h4>Powdered Milk Magic</h4>
+          <p>The secret bakery weapon in glazes, batters, and creams that delivers plush diner-style tenderness.</p>
+        </div>
+        <div class="one-liner-card">
+          <div class="liner-icon">⚖️</div>
+          <h4>Cozy Architecture</h4>
+          <p>Crisp base + warm protein + measured sauces = full satisfaction within your 2,100–2,150 calorie lane.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 MULTIPLE CHOICES INTERACTIVE MOOD SELECTOR -->
+    <section class="section-card jelly-card">
+      <div class="section-badge">🎮 INSTANT CCD PICKER</div>
+      <h3 class="section-title">What are you craving right now? 😋</h3>
+      <p class="section-caption">Pick one of the 5 CCD comfort cravings to unlock custom recipes and preset macros:</p>
+      
+      <div class="five-choices-grid" id="fiveChoicesGrid">
+        <button class="choice-btn" data-choice="bake" onclick="handleChoiceSelect('bake')">
+          <span class="choice-emoji">🥞</span>
+          <span class="choice-label">Warm Breakfast Bakes</span>
+          <span class="choice-tag">190–250 kcal</span>
+        </button>
+        <button class="choice-btn" data-choice="microwave" onclick="handleChoiceSelect('microwave')">
+          <span class="choice-emoji">🍫</span>
+          <span class="choice-label">Fudgy Microwave Cakes</span>
+          <span class="choice-tag">200–230 kcal</span>
+        </button>
+        <button class="choice-btn" data-choice="cafe" onclick="handleChoiceSelect('cafe')">
+          <span class="choice-emoji">☕</span>
+          <span class="choice-label">Café Drinks & Shakes</span>
+          <span class="choice-tag">70–135 kcal</span>
+        </button>
+        <button class="choice-btn" data-choice="savory" onclick="handleChoiceSelect('savory')">
+          <span class="choice-emoji">🌯</span>
+          <span class="choice-label">Melts, Wraps & Pizzas</span>
+          <span class="choice-tag">240–350 kcal</span>
+        </button>
+        <button class="choice-btn" data-choice="creams" onclick="handleChoiceSelect('creams')">
+          <span class="choice-emoji">🍓</span>
+          <span class="choice-label">Cold Puddings & Fluffs</span>
+          <span class="choice-tag">160–190 kcal</span>
+        </button>
+      </div>
+      <div id="choiceResultBanner" class="choice-result-banner" style="display: none;"></div>
+    </section>
+
+    <!-- PLAYABLE FOOD COMPARISON BATTLE & WINNER 🏆 -->
+    <section class="section-card jelly-card battle-arena">
+      <div class="section-badge">⚔️ PLAYABLE ARCADE</div>
+      <h3 class="section-title">CCD Food Battle Arena 🥊</h3>
+      <p class="section-caption">Two delicious CCD favorites go head-to-head! Click your champion to award a victory point and crown the Large Compact Winner!</p>
+      
+      <div class="battle-stage">
+        <div class="fighter-card" id="fighter1Card" onclick="voteWinner(1)">
+          <div class="fighter-tag">CONTENDER A</div>
+          <img id="fighter1Img" src="" alt="Fighter 1" class="fighter-img">
+          <h4 id="fighter1Name" class="fighter-name">Loading...</h4>
+          <p id="fighter1Cal" class="fighter-cal">0 kcal</p>
+          <button class="candy-btn-sm">Vote Champion 👑</button>
+        </div>
+
+        <div class="battle-vs-badge">
+          <span>VS</span>
+          <button class="candy-btn-mini" onclick="rollNewBattle()">Shuffle 🎲</button>
+        </div>
+
+        <div class="fighter-card" id="fighter2Card" onclick="voteWinner(2)">
+          <div class="fighter-tag">CONTENDER B</div>
+          <img id="fighter2Img" src="" alt="Fighter 2" class="fighter-img">
+          <h4 id="fighter2Name" class="fighter-name">Loading...</h4>
+          <p id="fighter2Cal" class="fighter-cal">0 kcal</p>
+          <button class="candy-btn-sm">Vote Champion 👑</button>
+        </div>
+      </div>
+
+      <!-- LARGE COMPACT WINNER 🏆 -->
+      <div class="winner-compact-card" id="winnerShowcase">
+        <div class="winner-trophy-ribbon">🏆 CURRENT CROWNED WINNER</div>
+        <div class="winner-compact-body">
+          <img id="winnerImg" src="" alt="Winner" class="winner-img-compact">
+          <div class="winner-details">
+            <h4 id="winnerName">Pancake Bake</h4>
+            <p id="winnerDesc">Tender, cakey texture loaded with vanilla cinnamon sweetness without gummy spoonable-oat energy.</p>
+            <div class="winner-metrics">
+              <span class="metric-badge">Calories: <strong id="winnerCal">220 kcal</strong></span>
+              <span class="metric-badge">Carbs: <strong id="winnerCarbs">28g</strong></span>
+              <span class="metric-badge">Protein: <strong id="winnerProt">16g</strong></span>
+              <span class="metric-badge">Wins: <strong id="winnerVotes">1</strong> 🌟</span>
+            </div>
+          </div>
+          <button class="candy-btn" onclick="logWinnerFood()">+ Quick Log Winner</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL CHART FOOD PYRAMID & MACROS -->
+    <section class="section-card jelly-card">
+      <div class="section-badge">📊 NUTRITION VISUALIZER</div>
+      <h3 class="section-title">Color-Coded CCD Horizontal Charts</h3>
+      <p class="section-caption">Real-time daily macro breakdown and the official horizontal CCD Food Pyramid:</p>
+
+      <div class="charts-dual-container">
+        <!-- Daily Macro Horizontal Charts -->
+        <div class="chart-box">
+          <h4 class="chart-subtitle">Daily Macro Consumption Tracker</h4>
+          <div class="macro-bar-group">
+            <div class="macro-bar-label">
+              <span>🌾 Carbs</span>
+              <span id="carbsLabel">0g / 230g</span>
+            </div>
+            <div class="progress-track"><div id="carbsBar" class="progress-fill carbs-fill" style="width: 0%;"></div></div>
+          </div>
+          <div class="macro-bar-group">
+            <div class="macro-bar-label">
+              <span>💪 Protein</span>
+              <span id="proteinLabel">0g / 135g</span>
+            </div>
+            <div class="progress-track"><div id="proteinBar" class="progress-fill protein-fill" style="width: 0%;"></div></div>
+          </div>
+          <div class="macro-bar-group">
+            <div class="macro-bar-label">
+              <span>🥑 Healthy Fats</span>
+              <span id="fatsLabel">0g / 55g</span>
+            </div>
+            <div class="progress-track"><div id="fatsBar" class="progress-fill fats-fill" style="width: 0%;"></div></div>
+          </div>
+          <div class="macro-bar-group">
+            <div class="macro-bar-label">
+              <span>🥗 Fiber</span>
+              <span id="fiberLabel">0g / 32g</span>
+            </div>
+            <div class="progress-track"><div id="fiberBar" class="progress-fill fiber-fill" style="width: 0%;"></div></div>
+          </div>
+        </div>
+
+        <!-- CCD Horizontal Food Pyramid -->
+        <div class="chart-box">
+          <h4 class="chart-subtitle">Horizontal CCD Food Pyramid Architecture</h4>
+          <div class="pyramid-horizontal">
+            <div class="pyramid-row tier-1">
+              <div class="pyramid-tier-meta">
+                <span class="tier-title">Tier 1: Core Foundation</span>
+                <span class="tier-items">Egg Whites, Greek Yogurt, Chicken Breast, Spinach, Water</span>
+              </div>
+              <div class="tier-percent-bar" style="width: 95%;">95% Priority</div>
+            </div>
+            <div class="pyramid-row tier-2">
+              <div class="pyramid-tier-meta">
+                <span class="tier-title">Tier 2: Cozy Texture & Bakes</span>
+                <span class="tier-items">Finely Blended Oats, Low-Carb Tortillas, AP Flour, Fresh Berries</span>
+              </div>
+              <div class="tier-percent-bar" style="width: 78%;">78% Daily</div>
+            </div>
+            <div class="pyramid-row tier-3">
+              <div class="pyramid-tier-meta">
+                <span class="tier-title">Tier 3: Bakery Softness & Flavor</span>
+                <span class="tier-items">Powdered Milk, Part-Skim Mozzarella, Cocoa, Arrabbiata</span>
+              </div>
+              <div class="tier-percent-bar" style="width: 55%;">55% Accents</div>
+            </div>
+            <div class="pyramid-row tier-4">
+              <div class="pyramid-tier-meta">
+                <span class="tier-title">Tier 4: Crown & SOTD Treats</span>
+                <span class="tier-items">Splenda Glazes, Cinnamon Swirls, S'mores Blondies, Donut Holes</span>
+              </div>
+              <div class="tier-percent-bar" style="width: 32%;">32% Comfort</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECIPE CATALOGUE & INTERACTIVE CALORIE SLIDER -->
+    <section class="section-card jelly-card">
+      <div class="section-badge">📖 ZERO-MANUAL-INPUT CCD RECIPES</div>
+      <h3 class="section-title">Cozy Core Diet Cookbook Recipes 🥞</h3>
+      <p class="section-caption">Select any CCD creation. Instant macro calculation across servings, cups, tablespoons, or adjust the Total Calorie Slider dynamically:</p>
+
+      <div class="recipe-explorer-controls">
+        <select id="recipeSelect" class="candy-input" onchange="renderActiveRecipe()">
+          <!-- Populated by JavaScript with all CCD items -->
+        </select>
+        <div class="unit-toggle-group">
+          <button class="unit-btn active" data-unit="serving" onclick="setUnit('serving')">Per Serving</button>
+          <button class="unit-btn" data-unit="cup" onclick="setUnit('cup')">Per Cup</button>
+          <button class="unit-btn" data-unit="tbsp" onclick="setUnit('tbsp')">Per Tbsp</button>
+          <button class="unit-btn" data-unit="tsp" onclick="setUnit('tsp')">Per Tsp</button>
+        </div>
+      </div>
+
+      <!-- Active Recipe Detail Card -->
+      <div class="active-recipe-display" id="activeRecipeCard">
+        <div class="recipe-visual-pane">
+          <img id="recipeImage" src="" alt="Recipe Image" class="recipe-cover-img">
+          <div class="recipe-vibe-tag" id="recipeVibeTag">Bakery Cozy</div>
+        </div>
+        <div class="recipe-data-pane">
+          <div class="recipe-headline">
+            <h4 id="recipeTitle">Pancake Bake</h4>
+            <span class="badge-cat" id="recipeCategory">Sweet Breakfast Bakes</span>
+          </div>
+          <p id="recipeVibeText" class="recipe-vibe-quote">A fluffy breakfast bake built to taste vanilla and cinnamon while staying soft, bakery-like, and easy to repeat.</p>
+
+          <!-- Interactive Calorie Slider -->
+          <div class="slider-box">
+            <div class="slider-header">
+              <span>Total Calories Slider:</span>
+              <strong id="sliderCalDisplay" class="slider-val">220 kcal</strong>
+            </div>
+            <input type="range" id="recipeCalSlider" min="50" max="600" step="5" value="220" class="candy-slider" oninput="adjustRecipeCalories(this.value)">
+            <small class="slider-note">Slide to scale portions! Macros update automatically below without manual input.</small>
+          </div>
+
+          <!-- Color-Coded Macro Cards -->
+          <div class="macro-cards-row">
+            <div class="macro-mini-card carbs-card">
+              <span class="mini-label">Carbs</span>
+              <strong id="cardCarbs" class="mini-val">28g</strong>
+            </div>
+            <div class="macro-mini-card protein-card">
+              <span class="mini-label">Protein</span>
+              <strong id="cardProtein" class="mini-val">16g</strong>
+            </div>
+            <div class="macro-mini-card fats-card">
+              <span class="mini-label">Fats</span>
+              <strong id="cardFats" class="mini-val">4g</strong>
+            </div>
+            <div class="macro-mini-card fiber-card">
+              <span class="mini-label">Fiber</span>
+              <strong id="cardFiber" class="mini-val">5g</strong>
+            </div>
+          </div>
+
+          <!-- Ingredients & Method preview -->
+          <div class="recipe-instructions-compact">
+            <h5>Key Ingredients & Method:</h5>
+            <p id="recipeIngredients">CCD oat blend, 1-2 tbsp powdered milk, yogurt, Splenda, cinnamon, vanilla, 1 tsp baking powder.</p>
+            <p id="recipeMethod">Mix dry first, whisk wet ingredients until fluffy and thick, fold add-ins, bake at 350°F or short microwave bursts.</p>
+          </div>
+
+          <button class="candy-btn candy-btn-full" onclick="logActiveRecipe()">+ Log This Meal to Daily Tracker 🍽️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOTD (SNACK OF THE DAY) & EXERCISE LOGGER -->
+    <div class="split-sections-grid">
+      <!-- SNACK OF THE DAY (SOTD) -->
+      <section class="section-card jelly-card">
+        <div class="section-badge">🍪 SOTD SPOTLIGHT</div>
+        <h3 class="section-title">Snack-of-the-Day (SOTD)</h3>
+        <p class="section-caption">Danielle's dedicated CCD treats list with zero-manual calculation:</p>
+
+        <div class="sotd-container">
+          <div class="sotd-item-card" id="sotdCard">
+            <img id="sotdImg" src="" alt="Snack of the Day" class="sotd-image">
+            <div class="sotd-info">
+              <h4 id="sotdName">S'mores Blondie Square</h4>
+              <p id="sotdCalTag"><strong>190 kcal</strong> | 24g C | 12g P | 4g F | 3g Fib</p>
+              <p class="sotd-desc">Campfire graham and chocolate marshmallow magic that stays soft without gummy oatmeal texture.</p>
+              <div class="sotd-actions">
+                <button class="candy-btn-sm" onclick="logSOTD()">+ Log SOTD</button>
+                <button class="candy-btn-mini" onclick="shuffleSOTD()">Next Snack 🍬</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sotd-vault">
+            <h5>All SOTD Favorites (Instant 1-Click Log):</h5>
+            <div class="vault-pills" id="sotdVaultPills">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AUTO EXERCISE & MOVEMENT LOGGER -->
+      <section class="section-card jelly-card">
+        <div class="section-badge">💃 MOVEMENT & ACTIVITY</div>
+        <h3 class="section-title">Automatic Calorie Burn Logger</h3>
+        <p class="section-caption">Select movement & duration. No manual formula needed — burn is calculated instantly:</p>
+
+        <div class="exercise-module">
+          <div class="exercise-selector-grid" id="exerciseGrid">
+            <button class="exercise-chip active" data-type="walk" onclick="selectExercise('walk', 3.8)">
+              <span>🚶‍♀️ Gentle Walk</span>
+              <small>~3.8 kcal/min</small>
+            </button>
+            <button class="exercise-chip" data-type="pilates" onclick="selectExercise('pilates', 5.5)">
+              <span>🧘‍♀️ Pilates</span>
+              <small>~5.5 kcal/min</small>
+            </button>
+            <button class="exercise-chip" data-type="barre" onclick="selectExercise('barre', 6.0)">
+              <span>🩰 Barre</span>
+              <small>~6.0 kcal/min</small>
+            </button>
+            <button class="exercise-chip" data-type="yoga" onclick="selectExercise('yoga', 4.2)">
+              <span>🌸 Yoga</span>
+              <small>~4.2 kcal/min</small>
+            </button>
+            <button class="exercise-chip" data-type="dance" onclick="selectExercise('dance', 7.8)">
+              <span>🕺 Michael Jackson / Just Dance</span>
+              <small>~7.8 kcal/min</small>
+            </button>
+          </div>
+
+          <div class="duration-row">
+            <label for="exerciseDuration">Duration: <strong id="durationDisplay">30</strong> minutes</label>
+            <input type="range" id="exerciseDuration" min="5" max="90" step="5" value="30" class="candy-slider" oninput="updateDuration(this.value)">
+          </div>
+
+          <div class="burn-preview-box">
+            <span>Estimated Burn:</span>
+            <strong id="burnResultDisplay">114 kcal</strong>
+          </div>
+
+          <button class="candy-btn candy-btn-full" onclick="logExerciseSession()">+ Log Workout to Activity Ring 🌟</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- DAILY LOGS: FOOD, WATER, WALKS & FASTING -->
+    <section class="section-card jelly-card">
+      <div class="section-badge">💧 DAILY CCD RHYTHM</div>
+      <h3 class="section-title">Water, Fasting & Daily Meal Log</h3>
+      
+      <div class="habits-triple-grid">
+        <!-- Water Tracker -->
+        <div class="habit-box">
+          <h4>Hydration Station 💧</h4>
+          <p><span id="waterCount">0</span> of 8 Glasses (64oz)</p>
+          <div class="glasses-row" id="glassesRow">
+            <!-- 8 interactive glasses generated via JS -->
+          </div>
+          <div class="habit-btn-row">
+            <button class="candy-btn-mini" onclick="addWater()">+ Add Glass</button>
+            <button class="candy-btn-mini reset-btn" onclick="resetWater()">Reset</button>
+          </div>
+        </div>
+
+        <!-- Fasting Window -->
+        <div class="habit-box">
+          <h4>Intermittent Fasting ⏳</h4>
+          <p id="fastingStatus">Current: 14:10 Cozy Rhythm</p>
+          <div class="fasting-visual">
+            <div class="fasting-fill" id="fastingFill" style="width: 70%;"></div>
+          </div>
+          <div class="fasting-inputs">
+            <label>Start: <input type="time" id="fastStart" value="20:00" class="mini-input" onchange="updateFasting()"></label>
+            <label>End: <input type="time" id="fastEnd" value="10:00" class="mini-input" onchange="updateFasting()"></label>
+          </div>
+          <small id="fastSummaryText">14 Hours Fasted / 10 Hours Eating Window</small>
+        </div>
+
+        <!-- Walk Counter -->
+        <div class="habit-box">
+          <h4>Gentle Walk Step Meter 👟</h4>
+          <p><span id="walkMinutes">0</span> mins logged today</p>
+          <div class="walk-quick-adds">
+            <button class="candy-btn-mini" onclick="quickLogWalk(15)">+15 min walk</button>
+            <button class="candy-btn-mini" onclick="quickLogWalk(30)">+30 min walk</button>
+            <button class="candy-btn-mini reset-btn" onclick="resetWalks()">Reset</button>
+          </div>
+          <small>Keeps maintenance neat at 2,100–2,150 kcal!</small>
+        </div>
+      </div>
+
+      <!-- Meal Log Table / List -->
+      <div class="logged-items-card">
+        <div class="log-header-row">
+          <h4>Today's Logged Foods & Snacks</h4>
+          <button class="candy-btn-mini reset-btn" onclick="clearDailyLog()">Clear Today's Log 🗑️</button>
+        </div>
+        <div class="logged-list" id="loggedFoodList">
+          <p class="empty-state">No foods logged yet today. Click "+ Log This Meal" or SOTD above!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITABLE PROFILE & STYLING CUSTOMIZER -->
+    <section class="section-card jelly-card" id="profileSection">
+      <div class="section-badge">🎨 STUDIO CUSTOMIZER</div>
+      <h3 class="section-title">Danielle's Profile & Color Studio</h3>
+      <p class="section-caption">Customize the website colors, accent tones, avatar picture, and profile details:</p>
+
+      <div class="profile-layout-grid">
+        <!-- Avatar & Pic Upload -->
+        <div class="avatar-box">
+          <div class="avatar-ring">
+            <img id="profileAvatarImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Danielle Avatar" class="profile-avatar">
+          </div>
+          <label class="file-upload-label candy-btn-sm">
+            📷 Change Profile Pic
+            <input type="file" id="avatarFileInput" accept="image/*" onchange="handleAvatarUpload(event)" style="display: none;">
+          </label>
+        </div>
+
+        <!-- Custom Color & Style Options -->
+        <div class="style-picker-box">
+          <h4>Website Color Style Theme</h4>
+          <div class="theme-buttons-row">
+            <button class="theme-btn theme-berry" onclick="setTheme('berry')">🍓 Sweet Berry</button>
+            <button class="theme-btn theme-blueberry" onclick="setTheme('blueberry')">🫐 Blueberry Frost</button>
+            <button class="theme-btn theme-cocoa" onclick="setTheme('cocoa')">🍫 Cozy Cocoa</button>
+            <button class="theme-btn theme-mint" onclick="setTheme('mint')">🍃 Vanilla Mint</button>
+          </div>
+
+          <div class="accent-color-picker">
+            <label for="customAccentPicker">Custom Accent Glow Color: </label>
+            <input type="color" id="customAccentPicker" value="#ff3e78" onchange="setCustomAccent(this.value)">
+          </div>
+
+          <!-- User Stats Input -->
+          <div class="user-stats-form">
+            <div class="form-group">
+              <label for="userHeight">Height:</label>
+              <input type="text" id="userHeight" placeholder="e.g. 5' 6&quot;" class="candy-input" onchange="saveProfileData()">
+            </div>
+            <div class="form-group">
+              <label for="userWeight">Weight / Goal:</label>
+              <input type="text" id="userWeight" placeholder="e.g. Maintenance Track" class="candy-input" onchange="saveProfileData()">
+            </div>
+            <div class="form-group full-width">
+              <label for="userReason">Reason for Using Website:</label>
+              <input type="text" id="userReason" placeholder="Delicious CCD recipes, easy macro consistency, cozy routine!" class="candy-input" onchange="saveProfileData()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRAND FINALE BANNER -->
+    <footer class="finale-banner jelly-card">
+      <div class="finale-content">
+        <h2 class="finale-title">LET'S MAKE...😋😍😎</h2>
+        <p class="finale-tagline">Berry Vibes Studio • Cozy Core Diet (CCD) • Fluffy, Structured, and Always Delicious!</p>
+        <div class="finale-emojis">🍓 🧁 🥞 ☕ 🌯 🍪 ✨ 🏆 💖</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
